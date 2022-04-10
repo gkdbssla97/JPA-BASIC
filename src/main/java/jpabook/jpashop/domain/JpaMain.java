@@ -25,16 +25,15 @@ public class JpaMain {
             member.setName("memberA");
             em.persist(member);
 
-            List<Order> orders = new ArrayList<>();
-            orders.add(member);
-            member.setOrders(order);
+            Order order = new Order();
+            order.setMember(member);
             em.persist(order);
 
             em.flush();
             em.clear();
 
-            Order order1 = em.find(Order.class, order.getMember());
-            Member member1 = order1.getMember();
+            Order findOrder = em.find(Order.class, order.getId());
+            Member member1 = findOrder.getMember();
             System.out.println(member1.getName());
 
             tx.commit();
