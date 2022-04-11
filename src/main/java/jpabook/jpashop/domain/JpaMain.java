@@ -21,20 +21,11 @@ public class JpaMain {
 
         try{
             // 저장
-            Member member = new Member();
-            member.setName("memberA");
-            em.persist(member);
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("HI");
 
-            Order order = new Order();
-            order.setMember(member);
-            em.persist(order);
-
-            em.flush();
-            em.clear();
-
-            Order findOrder = em.find(Order.class, order.getId());
-            Member member1 = findOrder.getMember();
-            System.out.println(member1.getName());
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {
